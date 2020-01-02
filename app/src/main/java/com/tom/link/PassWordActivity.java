@@ -9,26 +9,27 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 
-public class AccountActivity extends AppCompatActivity {
+public class PassWordActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_account);
+        setContentView(R.layout.activity_pass_word);
     }
 
-    public void but4(View view) {
-        EditText etac = findViewById(R.id.edac);
-        String accountString = etac.getText().toString();
-        if(!TextUtils.isEmpty(accountString)) {
-            Intent intent = new Intent(AccountActivity.this, PassWordActivity.class);
+    public void but5(View view) {
+        EditText etpa = findViewById(R.id.edpa);
+        String passwordString = etpa.getText().toString();
+        if(!TextUtils.isEmpty(passwordString)){
+            Intent intent = new Intent(PassWordActivity.this, MainActivity.class);
             startActivity(intent);
-        }else {
+        }else{
             new AlertDialog.Builder(this)
                     .setTitle("錯誤訊息")
-                    .setMessage("請輸入帳號")
+                    .setMessage("請輸入密碼")
                     .setPositiveButton("再輸入一次",null)
                     .show();
         }
+
     }
 }

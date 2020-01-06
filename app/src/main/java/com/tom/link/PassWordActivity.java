@@ -4,12 +4,15 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 
 public class PassWordActivity extends AppCompatActivity {
+
+    private String passwordString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,9 +22,13 @@ public class PassWordActivity extends AppCompatActivity {
 
     public void but5(View view) {
         EditText etpa = findViewById(R.id.edpa);
-        String passwordString = etpa.getText().toString();
+        passwordString = etpa.getText().toString();
         if(!TextUtils.isEmpty(passwordString)){
             Intent intent = new Intent(PassWordActivity.this, MainActivity.class);
+            SharedPreferences preferences = getSharedPreferences("test",MODE_PRIVATE);
+            preferences.edit()
+                    .putString("PASSWORD",passwordString)
+                    .commit();
             startActivity(intent);
         }else{
             new AlertDialog.Builder(this)

@@ -22,6 +22,7 @@ boolean isNext = false;
     private EditText edname;
     private String passwordString;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +41,14 @@ boolean isNext = false;
                 isNext = isChecked;
                 TextView text = findViewById(R.id.ggtext);
                 text.setText(isNext?"GG":"大GG");
+                String edname = getSharedPreferences("test",MODE_PRIVATE)
+                        .getString("NAME","");
+                String edaccount = getSharedPreferences("test",MODE_PRIVATE)
+                        .getString("ACCOUNT","");
+                String edpassword = getSharedPreferences("test",MODE_PRIVATE)
+                        .getString("PASSWORD","");
+
+
             }
         });
     }

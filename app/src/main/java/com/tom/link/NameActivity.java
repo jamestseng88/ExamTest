@@ -3,12 +3,15 @@ package com.tom.link;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 
 public class NameActivity extends AppCompatActivity {
+
+    private String nameString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,9 +21,13 @@ public class NameActivity extends AppCompatActivity {
 
     public void but3(View view) {
         EditText etna = findViewById(R.id.edna);
-        String nameString = etna.getText().toString();
+        nameString = etna.getText().toString();
 if(!TextUtils.isEmpty(nameString)){
     Intent intent = new Intent(NameActivity.this, AccountActivity.class);
+    SharedPreferences preferences = getSharedPreferences("test",MODE_PRIVATE);
+    preferences.edit()
+            .putString("NAME",nameString)
+            .commit();
     startActivity(intent);
 }else {
     new AlertDialog.Builder(this)

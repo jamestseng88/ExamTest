@@ -13,6 +13,8 @@ import android.widget.EditText;
 
 public class AccountActivity extends AppCompatActivity {
 
+    private String accountString;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,9 +23,13 @@ public class AccountActivity extends AppCompatActivity {
 
     public void but4(View view) {
         EditText etac = findViewById(R.id.edac);
-        String accountString = etac.getText().toString();
+        accountString = etac.getText().toString();
         if(!TextUtils.isEmpty(accountString)) {
             Intent intent = new Intent(AccountActivity.this, PassWordActivity.class);
+            SharedPreferences preferences = getSharedPreferences("test",MODE_PRIVATE);
+            preferences.edit()
+                    .putString("ACCOUNT",accountString)
+                    .commit();
             startActivity(intent);
         }else {
             new AlertDialog.Builder(this)

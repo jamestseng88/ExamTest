@@ -15,18 +15,24 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 boolean isNext = false;
-EditText edname = findViewById(R.id.name);
-EditText edaccount = findViewById(R.id.account);
-EditText edpassword =findViewById(R.id.password);
-String nameString = edname.getText().toString();
-String accountString = edaccount.getText().toString();
-String passwordString = edpassword.getText().toString();
-    private static final int REQUEST_CODE_REGISTER = 110;
+    private String accountString;
+    private String nameString;
+    private EditText edpassword;
+    private EditText edaccount;
+    private EditText edname;
+    private String passwordString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        edname = findViewById(R.id.name);
+        edaccount = findViewById(R.id.account);
+        edpassword = findViewById(R.id.password);
+        nameString = edname.getText().toString();
+        accountString = edaccount.getText().toString();
+        passwordString = edpassword.getText().toString();
+
         Switch sw = findViewById(R.id.switch23);
         sw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -37,25 +43,17 @@ String passwordString = edpassword.getText().toString();
             }
         });
     }
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if (requestCode==REQUEST_CODE_REGISTER){
-            if (resultCode==RESULT_OK){
-                edname.setText(getSharedPreferences("test", MODE_PRIVATE)
-                        .getString("name", ""));
-                edaccount.setText(getSharedPreferences("test", MODE_PRIVATE)
-                        .getString("account", ""));
-                edpassword.setText( getSharedPreferences("test", MODE_PRIVATE)
-                        .getString("password", ""));
-            }
-        }
-    }
+
 public void  but1(View view){
     if(!TextUtils.isEmpty(nameString) && !TextUtils.isEmpty(accountString) && !TextUtils.isEmpty(passwordString)) {
-
+        new AlertDialog.Builder(MainActivity.this)
+                .setTitle("成功訊息")
+                .setMessage("成功申請帳號")
+                .setPositiveButton("OK",null)
+                .show();
     }else{
         Intent intent = new Intent(MainActivity.this, NameActivity.class);
-        startActivityForResult(intent,REQUEST_CODE_REGISTER);
+        startActivity(intent);
     }
 }
 public void  butc(View view){

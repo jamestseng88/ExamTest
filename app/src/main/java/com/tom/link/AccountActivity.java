@@ -23,14 +23,8 @@ public class AccountActivity extends AppCompatActivity {
         EditText etac = findViewById(R.id.edac);
         String accountString = etac.getText().toString();
         if(!TextUtils.isEmpty(accountString)) {
-            String accountString1 = etac.getText().toString();
-            SharedPreferences preferences = getSharedPreferences("test",MODE_PRIVATE);
-            preferences.edit()
-                    .putString("account",accountString1)
-                    .commit();
             Intent intent = new Intent(AccountActivity.this, PassWordActivity.class);
             startActivity(intent);
-            finish();
         }else {
             new AlertDialog.Builder(this)
                     .setTitle("錯誤訊息")

@@ -24,12 +24,13 @@ public class PassWordActivity extends AppCompatActivity {
         EditText etpa = findViewById(R.id.edpa);
         passwordString = etpa.getText().toString();
         if(!TextUtils.isEmpty(passwordString)){
-            Intent intent = new Intent(PassWordActivity.this, MainActivity.class);
+//            Intent result = new Intent(PassWordActivity.this, MainActivity.class);
             SharedPreferences preferences = getSharedPreferences("test",MODE_PRIVATE);
             preferences.edit()
                     .putString("PASSWORD",passwordString)
                     .commit();
-            startActivity(intent);
+//            startActivity(intent);
+            finish();
         }else{
             new AlertDialog.Builder(this)
                     .setTitle("錯誤訊息")

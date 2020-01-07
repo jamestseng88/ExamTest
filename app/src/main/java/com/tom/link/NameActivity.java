@@ -23,12 +23,15 @@ public class NameActivity extends AppCompatActivity {
         EditText etna = findViewById(R.id.edna);
         nameString = etna.getText().toString();
 if(!TextUtils.isEmpty(nameString)){
-    Intent intent = new Intent(NameActivity.this, AccountActivity.class);
+    Intent account = new Intent(NameActivity.this, AccountActivity.class);
     SharedPreferences preferences = getSharedPreferences("test",MODE_PRIVATE);
     preferences.edit()
             .putString("NAME",nameString)
             .commit();
-    startActivity(intent);
+    startActivityForResult(account,0);
+    setResult(RESULT_OK);
+    finish();
+
 }else {
     new AlertDialog.Builder(this)
             .setTitle("錯誤訊息")

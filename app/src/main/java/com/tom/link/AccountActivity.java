@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 public class AccountActivity extends AppCompatActivity {
@@ -19,18 +20,21 @@ public class AccountActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
+
     }
 
     public void but4(View view) {
         EditText etac = findViewById(R.id.edac);
         accountString = etac.getText().toString();
         if(!TextUtils.isEmpty(accountString)) {
-            Intent intent = new Intent(AccountActivity.this, PassWordActivity.class);
+            Intent password = new Intent(AccountActivity.this, PassWordActivity.class);
             SharedPreferences preferences = getSharedPreferences("test",MODE_PRIVATE);
             preferences.edit()
                     .putString("ACCOUNT",accountString)
                     .commit();
-            startActivity(intent);
+            startActivityForResult(password,0);
+            setResult(RESULT_OK);
+            finish();
         }else {
             new AlertDialog.Builder(this)
                     .setTitle("錯誤訊息")
